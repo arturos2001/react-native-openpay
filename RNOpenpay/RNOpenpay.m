@@ -43,8 +43,8 @@ RCT_EXPORT_METHOD(createCardToken:(NSDictionary *)cardJson
         success:^(OPToken *token) {
             resolve(token.id);
         } failure:^(NSError *error) {
-            NSString *codeWithDomain = [NSString stringWithFormat:@"E%@%zd", error.domain.uppercaseString, error.code];
-            NSString *description = error.userInfo[@"errors"][0];
+            NSString *codeWithDomain = [@(error.code) stringValue];//[NSString stringWithFormat:@"E%@%zd", error.domain.uppercaseString, error.code];//[NSString stringWithFormat:@"E%@%zd", error.domain.uppercaseString, error.code];
+            NSString *description = error.userInfo[@"description"];//error.userInfo[@"errors"][0];
             reject(codeWithDomain, description, error);
     }];
 }

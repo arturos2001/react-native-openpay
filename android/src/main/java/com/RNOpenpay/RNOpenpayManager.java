@@ -48,12 +48,12 @@ public class RNOpenpayManager extends ReactContextBaseJavaModule {
 
             @Override
             public void onError(OpenpayServiceException error) {
-                promise.reject("Token", error.getDescription());
+                promise.reject(error.getErrorCode()+"", error.getDescription());
             }
 
             @Override
             public void onCommunicationError(ServiceUnavailableException error) {
-                promise.reject("Token", "could not reach openpay service");
+                promise.reject(0+"", "could not reach openpay service");
             }
 
             @Override
